@@ -39,8 +39,23 @@
       cursor: pointer;
       border-radius: 6px;
       transition: 0.3s;
+      text-decoration: none;
     }
     .download-btn:hover {
+      background-color: darkred;
+    }
+    .baixar-todas {
+      margin-top: 30px;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .baixar-todas:hover {
       background-color: darkred;
     }
   </style>
@@ -52,13 +67,45 @@
   <!-- Galeria -->
   <div class="gallery" id="galeria"></div>
 
+  <!-- Botão baixar todas -->
+  <button class="baixar-todas" onclick="baixarTodas()">Baixar todas</button>
+
   <script>
     // Lista de arquivos da pasta "fotos"
     const fotos = [
       "foto1.jpg",
       "foto2.jpg",
       "foto3.jpg",
-      "foto4.jpg"
+      "foto4.jpg",
+      "foto5.jpg",
+      "foto-6.jpg",
+      "foto-7.jpg",
+      "foto-8.jpg",
+      "foto-9.jpg",
+      "foto-11.jpg",
+      "foto-12.jpg",
+      "foto-13.jpg",
+      "foto-14.jpg",
+      "foto-15.jpg",
+      "foto-16.jpg",
+      "foto-17.jpg",
+      "foto-18.jpg",
+      "foto-19.jpg",
+      "foto-21.jpg",
+      "foto-22.jpg",
+      "foto-23.jpg",
+      "foto-24.jpg",
+      "foto-25.jpg",
+      "foto-26.jpg",
+      "foto-28.jpg",
+      "foto-29.jpg",
+      "foto-30.jpg",
+      "foto-31.jpg",
+      "foto-32.jpg",
+      "foto-33.jpg",
+      "foto-34.jpg",
+      "foto-35.jpg",
+      "foto-36.jpg",
       // adicione os nomes de todas as fotos aqui
     ];
 
@@ -76,12 +123,26 @@
       botao.innerText = "↓";
       botao.classList.add("download-btn");
       botao.href = "fotos/" + foto;
-      botao.download = foto; // 🔑 força o download
+      botao.download = foto; // força download
 
       container.appendChild(img);
       container.appendChild(botao);
       galeria.appendChild(container);
     });
+
+    // Função para baixar todas
+    function baixarTodas() {
+      fotos.forEach((foto, i) => {
+        setTimeout(() => {
+          const link = document.createElement("a");
+          link.href = "fotos/" + foto;
+          link.download = foto;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, i * 500); // pequeno delay entre downloads
+      });
+    }
   </script>
 
 </body>
