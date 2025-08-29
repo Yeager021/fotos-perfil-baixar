@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria de Fotos</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .foto-container {
+      position: relative;
+      display: inline-block;
+    }
+    .foto-container img {
+      max-width: 200px;
+      border-radius: 8px;
+      border: 2px solid white;
+    }
+    .download-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Minhas Fotos</h1>
+
+  <!-- Galeria -->
+  <div class="gallery" id="galeria"></div>
+
+  <script>
+    // Lista de arquivos da pasta "fotos"
+    const fotos = [
+      "foto1.jpg",
+      "foto2.jpg",
+      "foto3.jpg",
+      "foto4.jpg"
+      // adicione os nomes de todas as fotos aqui
+    ];
+
+    // Mostra as fotos com botão de download
+    const galeria = document.getElementById("galeria");
+    fotos.forEach(foto => {
+      const container = document.createElement("div");
+      container.classList.add("foto-container");
+
+      const img = document.createElement("img");
+      img.src = "fotos/" + foto;
+      img.alt = foto;
+
+      const botao = document.createElement("a");
+      botao.innerText = "↓";
+      botao.classList.add("download-btn");
+      botao.href = "fotos/" + foto;
+      botao.download = foto; // 🔑 força o download
+
+      container.appendChild(img);
+      container.appendChild(botao);
+      galeria.appendChild(container);
+    });
+  </script>
+
+</body>
+</html>
