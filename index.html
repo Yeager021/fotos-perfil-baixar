@@ -9,23 +9,26 @@
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 20px;
+      padding: 15px;
+      margin: 0;
+    }
+    h1 {
+      font-size: 22px;
     }
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* sempre 2 colunas */
+      gap: 15px;
       margin-top: 20px;
     }
     .foto-container {
       position: relative;
-      display: inline-block;
     }
     .foto-container img {
-      max-width: 200px;
+      width: 100%; /* ocupa toda a largura da célula */
       border-radius: 8px;
       border: 2px solid white;
+      display: block;
     }
     .download-btn {
       position: absolute;
@@ -34,18 +37,18 @@
       background-color: red;
       color: white;
       border: none;
-      padding: 6px 10px;
-      font-size: 14px;
+      padding: 10px 14px;
+      font-size: 16px;
       cursor: pointer;
       border-radius: 6px;
-      transition: 0.3s;
       text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
     .download-btn:hover {
       background-color: darkred;
     }
     .baixar-todas {
-      margin-top: 30px;
+      margin-top: 25px;
       background-color: red;
       color: white;
       border: none;
@@ -54,6 +57,8 @@
       cursor: pointer;
       border-radius: 8px;
       transition: 0.3s;
+      width: 90%;
+      max-width: 400px;
     }
     .baixar-todas:hover {
       background-color: darkred;
@@ -68,7 +73,7 @@
   <div class="gallery" id="galeria"></div>
 
   <!-- Botão baixar todas -->
-  <button class="baixar-todas" onclick="baixarTodas()">Baixar todas</button>
+  <button class="baixar-todas" onclick="baixarTodas()">⬇️ Baixar todas</button>
 
   <script>
     // Lista de arquivos da pasta "fotos"
@@ -120,7 +125,7 @@
       img.alt = foto;
 
       const botao = document.createElement("a");
-      botao.innerText = "↓";
+      botao.innerText = "⬇️";
       botao.classList.add("download-btn");
       botao.href = "fotos/" + foto;
       botao.download = foto; // força download
@@ -140,7 +145,7 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-        }, i * 500); // pequeno delay entre downloads
+        }, i * 500); // delay para não travar
       });
     }
   </script>
